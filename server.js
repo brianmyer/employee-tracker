@@ -1,12 +1,5 @@
 const inquirer = require('inquirer');
-const express = require('express');
-const mysql = require('mysql2');
-
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const mysql = require('mysql');
 
 const db = mysql.createConnection(
     {
@@ -23,16 +16,39 @@ const db = mysql.createConnection(
 inquirer
     .prompt([
         {
-        type: 'list',
-      message: 'What would you like to do?',
-      name: 'action',
-      choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee']
+            type: 'list',
+            message: 'What would you like to do?',
+            name: 'action',
+            choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee']
         }
     ])
-    .then((response) =>
-        response.confirm === response.password
-            ? console.log('Success!')
-            : console.log('You forgot your password already?!')
+    .then((response) => {
+        if (response.action === 'View all departments') {
+            console.log(`You chose: ${response.action}`)
+        }
+
+        if (response.action === 'View all roles') {
+            console.log(`You chose: ${response.action}`)
+        }
+        if (response.action === 'View all employees') {
+            console.log(`You chose: ${response.action}`)
+        }
+        if (response.action === 'Add a department') {
+            console.log(`You chose: ${response.action}`)
+        }
+        if (response.action === 'Add a role') {
+            console.log(`You chose: ${response.action}`)
+        }
+        if (response.action === 'Add an employee') {
+            console.log(`You chose: ${response.action}`)
+        }
+        if (response.action === 'Update an employee') {
+            console.log(`You chose: ${response.action}`)
+        }
+
+        
+        return
+    }
     );
 
 
@@ -46,13 +62,4 @@ inquirer
 // Query database
 db.query('SELECT * FROM course_names', function (err, results) {
     console.table(results);
-});
-
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-    res.status(404).end();
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
 });
