@@ -59,7 +59,7 @@ inquirer
 
 
 
-// Query database
-db.query('SELECT * FROM course_names', function (err, results) {
-    console.table(results);
-});
+// // Query database
+// db.query('SELECT * FROM course_names', function (err, results) {
+//     console.table(results);
+// });
