@@ -6,20 +6,20 @@ VALUES ("Finance"),
        ("Reception");
 
 INSERT INTO roles (job_title, department_id, salary)
-VALUES ("Finance Manager", 1, "$100,000"),
-       ("Marketing Manager", 2, "$100,000"),
-       ("Development Manager", 3, "$100,000"),
-       ("HR Manager", 4, "$100,000"),
-       ("Reception Manager", 5, "$100,000"),
-       ("CFO", 1, "$150,000"),
-       ("Analyst", 1, "$80,000"),
-       ("Social Media Coordinator", 2, "$60,000"),
-       ("Print Media Specialist", 2, "$60,000"),
-       ("Advertising Supervisor", 2, "$85,000"),
-       ("Recruiter", 3, "$50,000"),
-       ("Onboarding Specialist", 4, "$70,000"),
-       ("HR Intern", 4, "$30,000"),
-       ("Receptionist", 5, "$40,000");
+VALUES ("Finance Manager", 1, 100000),
+       ("Marketing Manager", 2, 100000),
+       ("Development Manager", 3, 100000),
+       ("HR Manager", 4, 100000),
+       ("Reception Manager", 5, 100000),
+       ("CFO", 1, 150000),
+       ("Analyst", 1, 80000),
+       ("Social Media Coordinator", 2, 60000),
+       ("Print Media Specialist", 2, 60000),
+       ("Advertising Supervisor", 2, 85000),
+       ("Recruiter", 3, 50000),
+       ("Onboarding Specialist", 4, 70000),
+       ("HR Intern", 4, 30000),
+       ("Receptionist", 5, 40000);
 
 INSERT INTO employees (first_name, last_name, role_id, department_id, reports_to)
 VALUES ("Princess", "Nielsen", 1, 1, "Ethan Carey"),
