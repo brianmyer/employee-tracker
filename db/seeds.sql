@@ -38,4 +38,4 @@ VALUES ("Princess", "Nielsen", 1, 1, "Ethan Carey"),
        ("Jax", "Hunt", 14, 5, "Lara Gonzalez"),
        ("Genevieve", "Roy", 13, 4, "Bruce Baxter"),
        ("Marcelo", "Potter", 14, 5, "Lara Gonzalez"),
-       ("Rory", "Banks", 8, 2, "");
+       ("Rory", "Banks", 8, 2, "Tru Wilkins");

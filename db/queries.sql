@@ -10,11 +10,13 @@ FROM employees
 INNER JOIN roles ON roles.id = role_id
 INNER JOIN departments ON departments.id = employees.department_id;
 
-SELECT department, COUNT(id) AS number_courses
-FROM course_names
-GROUP BY department;
+INSERT INTO departments (department)
+VALUES (?);
 
-SELECT department, SUM(total_enrolled) AS sum_enrolled
-FROM course_names
-GROUP BY department;
-      
+INSERT INTO roles (job_title, salary, department_id)
+VALUES (?, ?, ?);
+
+INSERT ONTO employees (first_name, last_name, role_id, reports_to)
+VALUES (?, ?, ?, ?)
+
+UPDATE employees SET role_id = ? WHERE first_name = ?
