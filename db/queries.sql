@@ -16,7 +16,7 @@ VALUES (?);
 INSERT INTO roles (job_title, salary, department_id)
 VALUES (?, ?, ?);
 
-INSERT ONTO employees (first_name, last_name, role_id, reports_to)
-VALUES (?, ?, ?, ?)
+INSERT INTO employees (first_name, last_name, role_id, department_id,  reports_to)
+VALUES (?, ?, ?, ?, ?);
 
-UPDATE employees SET role_id = ? WHERE first_name = ?
+UPDATE employees SET role_id = ? WHERE id = ?
