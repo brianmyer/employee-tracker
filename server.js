@@ -227,7 +227,32 @@ function inquirerPrompt() {
                             type: 'list',
                             message: 'Who does the new employee report to?',
                             name: 'manager',
-                            choices: ["Ethan Carey", "Tru Wilkins", "Amalia Colon", "Bruce Baxter", "Lara Gonzalez", "N/A"]
+                            choices: [
+                                {
+                                    name: "Ethan Carey",
+                                    value: 6 
+                                },
+                                {
+                                    name: "Tru Wilkins",
+                                    value: 2 
+                                },
+                                {
+                                    name: "Amalia Colon",
+                                    value: 3
+                                },
+                                {
+                                    name: "Bruce Baxter",
+                                    value: 4 
+                                },
+                                {
+                                    name: "Lara Gonzalez",
+                                    value: 5 
+                                }, 
+                                {
+                                    name: "N/A",
+                                    value: null 
+                                }
+                            ]
                         }
                     ])
                     .then((response) => {
