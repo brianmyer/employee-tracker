@@ -24,7 +24,7 @@ function inquirerPrompt() {
                 type: 'list',
                 message: 'What would you like to do?',
                 name: 'action',
-                choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee', 'Quit']
+                choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee', 'View Employees by Manager', 'Quit']
             }
         ])
         .then((response) => {
@@ -421,6 +421,19 @@ function inquirerPrompt() {
                            inquirerPrompt();
                        });
                     })
+            }
+            if (response.action === 'View Employees by Manager'){
+                const sql = `SELECT 
+                CONCAT(m.last_name, ', ', m.first_name) AS Manager,
+                CONCAT(e.last_name, ', ', e.first_name) AS Employee
+            FROM
+                employees e
+                LEFT JOIN employees m ON m.id = e.manager_id
+            ORDER BY 
+                Manager;`;
+                db.query(sql, function (err, results) {
+                    console.table(results);
+                })
             }
             if (response.action === 'Quit') {
                 process.exit();
