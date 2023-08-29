@@ -5,10 +5,11 @@ FROM departments;
 FROM roles
 INNER JOIN departments ON departments.id = department_id;
 
- SELECT employees.id, first_name, last_name, job_title, department, salary, reports_to
-FROM employees
-INNER JOIN roles ON roles.id = role_id
-INNER JOIN departments ON departments.id = employees.department_id;
+ SELECT e.id, e.first_name, e.last_name, job_title, department, salary, CONCAT(m.first_name,' ',m.last_name) AS Manager
+    FROM employees e
+    LEFT JOIN employees m ON m.id = e.manager_id
+    INNER JOIN roles ON e.role_id = roles.id
+    INNER JOIN departments ON e.department_id = departments.id;
 
 INSERT INTO departments (department)
 VALUES (?);
@@ -16,7 +17,7 @@ VALUES (?);
 INSERT INTO roles (job_title, salary, department_id)
 VALUES (?, ?, ?);
 
-INSERT INTO employees (first_name, last_name, role_id, department_id,  reports_to)
+INSERT INTO employees (first_name, last_name, role_id, department_id, manager_id)
 VALUES (?, ?, ?, ?, ?);
 
 UPDATE employees SET role_id = ? WHERE id = ?

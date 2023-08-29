@@ -231,7 +231,7 @@ function inquirerPrompt() {
                         }
                     ])
                     .then((response) => {
-                       const sql = `INSERT INTO employees (first_name, last_name, role_id, department_id, reports_to)
+                       const sql = `INSERT INTO employees (first_name, last_name, role_id, department_id, manager_id)
                        VALUES (?, ?, ?, ?, ?);`;
                        const params = [response.first_name, response.last_name, response.role, response.department, response.manager]
                    
@@ -425,10 +425,11 @@ function getRoles() {
 }
 
 function getEmployees() {
-    const sql = `SELECT employees.id, first_name, last_name, job_title, department, salary, reports_to
-    FROM employees
-    INNER JOIN roles ON role_id = roles.id
-    INNER JOIN departments ON employees.department_id = departments.id;`;
+    const sql = `SELECT e.id, e.first_name, e.last_name, job_title, department, salary, CONCAT(m.first_name,' ',m.last_name) AS Manager
+    FROM employees e
+    LEFT JOIN employees m ON m.id = e.manager_id
+    INNER JOIN roles ON e.role_id = roles.id
+    INNER JOIN departments ON e.department_id = departments.id;`;
 
     db.query(sql, function (err, results) {
         console.table(results);

@@ -9,14 +9,14 @@ CREATE TABLE employees (
   last_name VARCHAR(30) NOT NULL,
   role_id INT,
   department_id INT,
-  reports_to VARCHAR(30)
+  manager_id INT
 );
 
 CREATE TABLE roles (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   job_title VARCHAR(30), 
   department_id INT,
-  salary DECIMAL(19,4) NOT NULL
+  salary DECIMAL(19,2) NOT NULL
 );
 
 CREATE TABLE departments (
