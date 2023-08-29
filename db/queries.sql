@@ -20,4 +20,4 @@ VALUES (?, ?, ?);
 INSERT INTO employees (first_name, last_name, role_id, department_id, manager_id)
 VALUES (?, ?, ?, ?, ?);
 
-UPDATE employees SET role_id = ? WHERE id = ?
+UPDATE employees SET role_id = ?, department_id = ?, manager_id = ? WHERE id = ?;

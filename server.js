@@ -354,66 +354,66 @@ function inquirerPrompt() {
                             choices: [
                                 {
                                     name: "Finance Manager",
-                                    value: 1 
+                                    value: [1, 1, 6]
                                 },
                                 {
                                     name: "Marketing Manager",
-                                    value: 2 
+                                    value: [2, 2, null] 
                                 },
                                 {
                                     name: "Development Manager",
-                                    value: 3
+                                    value: [3, 3, null]
                                 },
                                 {
                                     name: "HR Manager",
-                                    value: 4 
+                                    value: [4, 4, null] 
                                 },
                                 {
                                     name: "Reception Manager",
-                                    value: 5 
+                                    value: [5, 5, null] 
                                 },
                                 {
                                     name: "CFO",
-                                    value: 6 
+                                    value: [6, 1, null] 
                                 },
                                 {
                                     name: "Analyst",
-                                    value: 7 
+                                    value: [7, 1, 6] 
                                 },
                                 {
                                     name: "Social Media Coordinator",
-                                    value: 8 
+                                    value: [8, 2, 2] 
                                 },
                                 {
                                     name: "Print Media Specialist",
-                                    value: 9 
+                                    value: [9, 2, 2] 
                                 },
                                 {
                                     name: "Advertising Supervisor",
-                                    value: 10 
+                                    value: [10, 2, 2] 
                                 },
                                 {
                                     name: "Recruiter",
-                                    value: 11 
+                                    value: [11, 3, 3] 
                                 },
                                 {
                                     name: "Onboarding Specialist",
-                                    value: 12 
+                                    value: [12, 4, 4] 
                                 },
                                 {
                                     name: "HR Intern",
-                                    value: 13 
+                                    value: [13, 4, 4] 
                                 },
                                 {
                                     name: "Receptionist",
-                                    value: 14 
+                                    value: [14, 5, 5] 
                                 }
                             ]
                         }
                     ])
                     .then((response) => {
-                       const sql = `UPDATE employees SET role_id = ? WHERE id = ?;`;
-                       const params = [response.role, response.name]
+                       const sql = `UPDATE employees SET role_id = ?, department_id = ?, manager_id = ? WHERE id = ?;`;
+                       const params = [response.role[0], response.role[1], response.role[2], response.name]
                    
                        db.query(sql, params, function (err, results) {
                             console.log(`Successfully added ${params}!`)
