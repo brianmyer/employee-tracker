@@ -21,3 +21,17 @@ INSERT INTO employees (first_name, last_name, role_id, department_id, manager_id
 VALUES (?, ?, ?, ?, ?);
 
 UPDATE employees SET role_id = ?, department_id = ?, manager_id = ? WHERE id = ?;
+
+SELECT CONCAT(m.last_name, ', ', m.first_name) AS Manager, CONCAT(e.last_name, ', ', e.first_name) AS Employee
+FROM employees e
+LEFT JOIN employees m ON m.id = e.manager_id
+ORDER BY Manager;
+
+SELECT department, CONCAT(last_name, ', ', first_name) AS Employee
+FROM employees
+INNER JOIN departments ON departments.id = department_id
+ORDER BY department;
+
+select departments.id, department,sum(roles.salary)
+from departments inner join roles on departments.id = department_id
+group by departments.id, department;

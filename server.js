@@ -24,7 +24,7 @@ function inquirerPrompt() {
                 type: 'list',
                 message: 'What would you like to do?',
                 name: 'action',
-                choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee', 'View Employees by Manager', 'Quit']
+                choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee', 'View Employees by Manager', 'View Employees by Department', 'View Department Salary Budgets', 'Quit']
             }
         ])
         .then((response) => {
@@ -433,7 +433,27 @@ function inquirerPrompt() {
                 Manager;`;
                 db.query(sql, function (err, results) {
                     console.table(results);
+                });
+                inquirerPrompt()
+            }
+            if (response.action === 'View Employees by Department') {
+                const sql = `SELECT department, CONCAT(last_name, ', ', first_name) AS Employee
+                FROM employees
+                INNER JOIN departments ON departments.id = department_id
+                ORDER BY department;`;
+                db.query(sql, function (err, results) {
+                    console.table(results);
                 })
+                inquirerPrompt()
+            }
+            if (response.action === 'View Department Salary Budgets'){
+                const sql = `select departments.id, department,sum(roles.salary)
+                from departments inner join roles on departments.id = department_id
+                group by departments.id, department;`;
+                db.query(sql, function (err, results) {
+                    console.table(results);
+                })
+                inquirerPrompt()
             }
             if (response.action === 'Quit') {
                 process.exit();
